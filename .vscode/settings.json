@@ -1,0 +1,7 @@
+{
+  "cSpell.words": ["autoattach"],
+  "debug.node.autoAttach": "on",
+  "editor.formatOnSave": true,
+  "files.eol": "\n",
+  "git.autofetch": true
+}
