@@ -8,7 +8,7 @@ yarn add -D google-sheet-translation-sync
 
 ## Download app credentials
 
-`credetials.json`
+`credentials.json`
 
 https://developers.google.com/sheets/api/quickstart/nodejs
 
@@ -42,7 +42,7 @@ module.exports = {
 ## Usage
 
 ```js
-const { pull, push } = require("../src");
+const { pull, push } = require("google-sheet-translation-sync");
 const config = require("./config");
 
 pull(config);
