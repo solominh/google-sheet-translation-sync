@@ -28,3 +28,7 @@ yarn-error.log*
 
 /live-server/server.cert
 /live-server/server.key
+
+/**/token.json
+/**/credentials.json
+/**/languages

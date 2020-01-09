@@ -1,11 +1,11 @@
 {
-  "name": "playground",
+  "name": "node-translation-sync",
   "version": "1.0.0",
   "description": "This is a node playground for testing some js module",
   "main": "index.js",
   "scripts": {
-    "start": "env-cmd -f ./.env nodemon --exec babel-node src/index.js",
-    "debug": "env-cmd -f ./.env nodemon --inspect-brk --exec babel-node src/index.js"
+    "pull": "node examples/pull.js",
+    "push": "node examples/push.js"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +18,10 @@
     "babel-register": "^6.26.0",
     "env-cmd": "^10.0.1",
     "nodemon": "^2.0.0"
+  },
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "googleapis": "39",
+    "lodash": "^4.17.15"
   }
 }
