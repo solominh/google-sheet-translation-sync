@@ -1,8 +1,8 @@
 {
-  "name": "node-translation-sync",
-  "version": "1.0.0",
+  "name": "google-sheet-translation-sync",
+  "version": "1.0.1",
   "description": "This is a node playground for testing some js module",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "pull": "node examples/pull.js",
     "push": "node examples/push.js"
@@ -19,9 +19,15 @@
     "env-cmd": "^10.0.1",
     "nodemon": "^2.0.0"
   },
-  "dependencies": {
+  "peerDependencies": {
     "fs-extra": "^8.1.0",
-    "googleapis": "39",
     "lodash": "^4.17.15"
-  }
+  },
+  "dependencies": {
+    "googleapis": "39"
+  },
+  "files": [
+    "README.md",
+    "src/"
+  ]
 }
