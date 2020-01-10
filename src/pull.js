@@ -29,7 +29,7 @@ module.exports = function(config) {
       sheets.spreadsheets.values.get(
         {
           spreadsheetId: config.spreadsSheetId,
-          range: `${config.sheetName}!${config.pull.range}`
+          range: `${config.sheetName}!${config.range}`
         },
         (err, res) => {
           if (err) {
@@ -48,13 +48,17 @@ module.exports = function(config) {
 
   async function writeTranslation(jsonArray) {
     try {
+      // Remove header
+      if (config.header) {
+        jsonArray.shift();
+      }
+
       // Write file
       for (let lang of config.languages) {
         const prevPath = getTranslationPath(lang);
-        fs.ensure;
         let prevObj;
         try {
-          prevObj = (await fs.readJsonSync(prevPath)) || {};
+          prevObj = (await fs.readJson(prevPath)) || {};
         } catch (error) {
           prevObj = {};
         }

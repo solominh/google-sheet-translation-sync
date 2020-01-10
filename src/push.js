@@ -22,11 +22,10 @@ module.exports = function(config) {
     return path.join(config.languagesRootPath, compiled({ language: lang }));
   }
 
-  function getTranslationRows() {
+  async function getTranslationRows() {
     const obj = {};
     for (let lang of config.languages) {
-      const str = fs.readFileSync(getTranslationPath(lang));
-      obj[lang] = JSON.parse(str);
+      obj[lang] = await fs.readJson(getTranslationPath(lang));
     }
 
     // Get all keys
@@ -58,15 +57,15 @@ module.exports = function(config) {
   async function push(auth) {
     const sheets = google.sheets({ version: "v4", auth });
 
-    const rows = getTranslationRows();
-    console.log(rows);
-
     try {
+      const rows = await getTranslationRows();
+      console.log(rows);
+
       await new Promise((resolve, reject) => {
         sheets.spreadsheets.values.update(
           {
             spreadsheetId: config.spreadsSheetId,
-            range: `${config.sheetName}!${config.push.range}`,
+            range: `${config.sheetName}!${config.range}`,
             valueInputOption: "RAW",
             resource: {
               values: rows
