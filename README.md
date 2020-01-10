@@ -30,12 +30,7 @@ module.exports = {
   sheetName: "test",
   // Ignore header => use A2 instead of A1
   // G100 => 100 lines
-  pull: {
-    range: "A2:F1500"
-  },
-  push: {
-    range: "A1:F1500"
-  }
+  range: "A1:F1500"
 };
 ```
 
