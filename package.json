@@ -1,6 +1,6 @@
 {
   "name": "google-sheet-translation-sync",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This is a node playground for testing some js module",
   "main": "src/index.js",
   "scripts": {

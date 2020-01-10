@@ -67,7 +67,11 @@ module.exports = function(config) {
         jsonArray.forEach(row => {
           const key = row[getColNumber("key")];
           const value = row[getColNumber(lang)];
-          translation[key] = value;
+
+          // value undefined or contain \n
+          if (value) {
+            translation[key] = value.trim();
+          }
         });
 
         const finalTranslation = {
