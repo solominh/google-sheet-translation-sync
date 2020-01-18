@@ -1,7 +1,9 @@
-const pull = require("./pull");
-const push = require("./push");
+const pull = require('./pull');
+const push = require('./push');
+const sort = require('./sort');
 
 module.exports = {
   pull,
-  push
+  push,
+  sort
 };

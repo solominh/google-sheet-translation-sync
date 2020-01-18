@@ -83,12 +83,23 @@ translation-sync pull --config ./custom-path/translation-sync.config.js
 translation-sync push --config ./custom-path/translation-sync.config.js
 ```
 
+### sort
+
+- Sort by key
+- Move rows that have non-empty note or to the bottom
+- Move rows that have empty or `__NOT_TRANSLATED__` to the bottom
+
+```bash
+translation-sync sort --config ./custom-path/translation-sync.config.js
+```
+
 ## API usage
 
 ```js
-const { pull, push } = require('google-sheet-translation-sync');
+const { pull, push, sort } = require('google-sheet-translation-sync');
 const config = require('./translation-sync/translation-sync.config.js');
 
 pull(config);
 push(config);
+sort(config);
 ```

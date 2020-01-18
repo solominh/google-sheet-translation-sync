@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "pull": "node ./bin/translation-sync.js pull --config translation-sync/translation-sync.config.js",
-    "push": "node ./bin/translation-sync.js push --config translation-sync/translation-sync.config.js"
+    "push": "node ./bin/translation-sync.js push --config translation-sync/translation-sync.config.js",
+    "sort": "node ./bin/translation-sync.js sort --config translation-sync/translation-sync.config.js"
   },
   "keywords": [],
   "author": "",
