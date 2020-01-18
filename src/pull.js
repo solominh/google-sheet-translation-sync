@@ -1,9 +1,9 @@
-const authorize = require("./authorize");
-const { google } = require("googleapis");
+const authorize = require('./authorize');
+const { google } = require('googleapis');
 
-const fs = require("fs-extra");
-const path = require("path");
-const _ = require("lodash");
+const fs = require('fs-extra');
+const path = require('path');
+const _ = require('lodash');
 
 module.exports = function(config) {
   // Get column number from title
@@ -23,7 +23,7 @@ module.exports = function(config) {
   }
 
   async function pull(auth) {
-    const sheets = google.sheets({ version: "v4", auth });
+    const sheets = google.sheets({ version: 'v4', auth });
 
     const res = await new Promise((resolve, reject) => {
       sheets.spreadsheets.values.get(
@@ -42,7 +42,7 @@ module.exports = function(config) {
     });
 
     const rows = res.data.values;
-    console.log(rows);
+    // console.log(rows);
     await writeTranslation(rows);
   }
 
@@ -65,7 +65,7 @@ module.exports = function(config) {
 
         const translation = {};
         jsonArray.forEach(row => {
-          const key = row[getColNumber("key")];
+          const key = row[getColNumber('key')];
           const value = row[getColNumber(lang)];
 
           // value undefined or contain \n

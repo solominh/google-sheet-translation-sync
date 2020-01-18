@@ -1,11 +1,11 @@
 {
   "name": "google-sheet-translation-sync",
   "version": "1.0.3",
-  "description": "This is a node playground for testing some js module",
+  "description": "Google sheet translation sync",
   "main": "src/index.js",
   "scripts": {
-    "pull": "node examples/pull.js",
-    "push": "node examples/push.js"
+    "pull": "node ./bin/translation-sync.js pull --config examples/translation-sync.config.js",
+    "push": "node ./bin/translation-sync.js push --config examples/translation-sync.config.js"
   },
   "keywords": [],
   "author": "",
@@ -17,17 +17,34 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
     "env-cmd": "^10.0.1",
-    "nodemon": "^2.0.0"
+    "fs-extra": "^8.1.0",
+    "husky": "^4.0.10",
+    "lodash": "^4.17.15",
+    "nodemon": "^2.0.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
   },
   "peerDependencies": {
     "fs-extra": "^8.1.0",
     "lodash": "^4.17.15"
   },
   "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.1.0",
     "googleapis": "39"
+  },
+  "bin": {
+    "translation-sync": "src/bin.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "files": [
     "README.md",
-    "src/"
+    "src/",
+    "bin",
+    "package.json"
   ]
 }

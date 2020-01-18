@@ -1,9 +1,9 @@
-const authorize = require("./authorize");
-const { google } = require("googleapis");
+const authorize = require('./authorize');
+const { google } = require('googleapis');
 
-const fs = require("fs-extra");
-const path = require("path");
-const _ = require("lodash");
+const fs = require('fs-extra');
+const path = require('path');
+const _ = require('lodash');
 
 module.exports = function(config) {
   // Get column number from title
@@ -42,8 +42,8 @@ module.exports = function(config) {
     rows.push(config.header);
     for (let key of keys) {
       const row = [];
-      row[getColNumber("key")] = key;
-      row[getColNumber("note")] = "";
+      row[getColNumber('key')] = key;
+      row[getColNumber('note')] = '';
       for (let lang of config.languages) {
         row[getColNumber(lang)] = _.get(obj[lang], key);
       }
@@ -55,18 +55,18 @@ module.exports = function(config) {
   }
 
   async function push(auth) {
-    const sheets = google.sheets({ version: "v4", auth });
+    const sheets = google.sheets({ version: 'v4', auth });
 
     try {
       const rows = await getTranslationRows();
-      console.log(rows);
+      // console.log(rows);
 
       await new Promise((resolve, reject) => {
         sheets.spreadsheets.values.update(
           {
             spreadsheetId: config.spreadsSheetId,
             range: `${config.sheetName}!${config.range}`,
-            valueInputOption: "RAW",
+            valueInputOption: 'RAW',
             resource: {
               values: rows
             }
