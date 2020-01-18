@@ -1,5 +1,7 @@
 # GUIDE
 
+[![npm version](https://badge.fury.io/js/google-sheet-translation-sync.svg)](https://badge.fury.io/js/google-sheet-translation-sync)
+
 ## Installation
 
 ```bash
