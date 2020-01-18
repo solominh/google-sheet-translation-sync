@@ -1811,6 +1811,15 @@ google-p12-pem@^1.0.0:
     node-forge "^0.8.0"
     pify "^4.0.0"
 
+google-sheet-translation-sync@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/google-sheet-translation-sync/-/google-sheet-translation-sync-2.0.2.tgz#cb3198079e11e2fb587d7cedcdd3ae2b48b3a675"
+  integrity sha512-YModhsGV0c36JAkAR07EUqm3O3STXrjkxlgSGR5lAQiGKXzFPtISL2Y/d+f4bNTPpsKwfwUKnA/y7N1kZpWFGg==
+  dependencies:
+    chalk "^3.0.0"
+    commander "^4.1.0"
+    googleapis "39"
+
 googleapis-common@^0.7.0:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/googleapis-common/-/googleapis-common-0.7.2.tgz#a694f55d979cb7c2eac21a0e0439af12f9b418ba"

@@ -6,55 +6,89 @@
 yarn add -D google-sheet-translation-sync
 ```
 
-## Download app credentials
+or
 
-`credentials.json`
+```bash
+npm install --save-dev google-sheet-translation-sync
+```
+
+### Install peerDependencies if missing
+
+Note: many apps already have fs-extra and lodash installed
+
+```bash
+yarn add -D fs-extra lodash
+```
+
+## Create google sheet app and download app `credentials.json`
 
 https://developers.google.com/sheets/api/quickstart/nodejs
 
-## Create a `config.js` file
+## Add config file
+
+- Should create a folder names `translation-sync` and put `translation-sync.config.js` file in it
+- `translation-sync.config.js` examples:
 
 ```js
-const path = require("path");
-const languages = ["en", "vi"];
+const path = require('path');
+const languages = ['en', 'vi'];
+const defaultLanguage = 'en';
 
 module.exports = {
-  credentialsPath: path.join(__dirname, "credentials.json"),
-  tokenPath: path.join(__dirname, "token.json"),
+  credentialsPath: path.join(__dirname, 'credentials.json'),
+  tokenPath: path.join(__dirname, 'token.json'),
   languages: languages,
-  defaultLanguage: "en",
-  languagesRootPath: path.join(__dirname, "../src/languages"),
-  languagePathPattern: "{{language}}/translation.json",
-  header: ["note", "key", ...languages],
-  spreadsSheetId: "1m2BEgWXkQm***",
-  sheetName: "test",
-  // Ignore header => use A2 instead of A1
-  // G100 => 100 lines
-  range: "A1:F1500"
+  defaultLanguage: defaultLanguage,
+  languagesRootPath: path.join(__dirname, '../src/languages'),
+  languagePathPattern: '{{language}}/translation.json',
+  header: ['note', 'key', ...languages],
+  spreadsSheetId: '1m2BEgWXkQm***',
+  sheetName: 'test',
+  range: 'A1:F1500' // Sheet range
 };
 ```
 
-## Usage
+### Folder structure
+
+```bash
+project-folder
+  translation-sync
+    translation-sync.config.js
+    credentials.json # Google app credential
+    token.json # Generated when run pull or push for the first time
+  package.json
+```
+
+### .gitignore
+
+Add `credential.json` and `token.json` to `.gitignore`
+Example:
+
+```bash
+/translation-sync/credentials.json
+/translation-sync/token.json
+```
+
+## CLI usage
+
+### pull
+
+```bash
+translation-sync pull --config ./custom-path/translation-sync.config.js
+```
+
+### push
+
+```bash
+translation-sync push --config ./custom-path/translation-sync.config.js
+```
+
+## API usage
 
 ```js
-const { pull, push } = require("google-sheet-translation-sync");
-const config = require("./config");
+const { pull, push } = require('google-sheet-translation-sync');
+const config = require('./translation-sync/translation-sync.config.js');
 
 pull(config);
 push(config);
-```
-
-## Folder structure
-
-- config.js
-- credentials.json
-- token.json
-- pull.js
-- push.js
-
-```json
-  "scripts": {
-    "pull": "node pull.js",
-    "push": "node push.js"
-  },
 ```

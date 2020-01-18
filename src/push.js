@@ -80,8 +80,10 @@ module.exports = function(config) {
           }
         );
       });
+
+      console.log('push completed');
     } catch (error) {
-      console.log(error);
+      console.log('error', error);
     }
   }
 

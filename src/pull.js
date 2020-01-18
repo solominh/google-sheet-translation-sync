@@ -80,8 +80,10 @@ module.exports = function(config) {
         };
         await fs.outputJSON(prevPath, finalTranslation, { spaces: 2 });
       }
+
+      console.log('pull completed');
     } catch (error) {
-      console.log(error);
+      console.log('pull error', error);
     }
   }
 

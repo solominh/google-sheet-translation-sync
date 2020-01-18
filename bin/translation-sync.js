@@ -20,7 +20,7 @@ program
   .description('pull translations from server')
   .option('-c, --config <configPath>', 'config custom path')
   .action(cmdObj => {
-    const defaultConfigPath = path.join(__dirname, 'translation-sync.config.js');
+    const defaultConfigPath = path.resolve(process.cwd(), 'translation-sync.config.js');
     const configPath = path.resolve(cmdObj.config || defaultConfigPath);
     const isExist = fs.existsSync(configPath);
     if (!isExist) {
@@ -44,7 +44,7 @@ program
   .description('push translations to server')
   .option('-c, --config <configPath>', 'config custom path')
   .action(cmdObj => {
-    const defaultConfigPath = path.join(__dirname, 'translation-sync.config.js');
+    const defaultConfigPath = path.resolve(process.cwd(), 'translation-sync.config.js');
     const configPath = path.resolve(cmdObj.config || defaultConfigPath);
     const isExist = fs.existsSync(configPath);
     if (!isExist) {
