@@ -6,11 +6,6 @@
 
 ```bash
 yarn add -D google-sheet-translation-sync
-```
-
-or
-
-```bash
 npm install --save-dev google-sheet-translation-sync
 ```
 
@@ -45,7 +40,7 @@ module.exports = {
   languagePathPattern: '{{language}}/translation.json',
   header: ['note', 'key', ...languages],
   spreadsSheetId: '1m2BEgWXkQm***',
-  sheetName: 'test',
+  sheetName: 'Sheet1',
   range: 'A1:F1500' // Sheet range
 };
 ```
@@ -56,7 +51,7 @@ module.exports = {
 project-folder
   translation-sync
     translation-sync.config.js
-    credentials.json # Google app credential
+    credentials.json # Google app credentials
     token.json # Generated when run pull or push for the first time
   package.json
 ```
@@ -75,11 +70,15 @@ Example:
 
 ### pull
 
+- Pull translations from Google Sheet
+
 ```bash
 translation-sync pull --config ./custom-path/translation-sync.config.js
 ```
 
 ### push
+
+- Push translations from your project
 
 ```bash
 translation-sync push --config ./custom-path/translation-sync.config.js
@@ -87,9 +86,10 @@ translation-sync push --config ./custom-path/translation-sync.config.js
 
 ### sort
 
+- Sort server translations
 - Sort by key
-- Move rows that have non-empty note or to the bottom
-- Move rows that have empty or `__NOT_TRANSLATED__` to the bottom
+- Move rows that have non-empty note to the bottom
+- Move rows that have empty or `__NOT_TRANSLATED__` language value to the bottom
 
 ```bash
 translation-sync sort --config ./custom-path/translation-sync.config.js
