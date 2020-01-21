@@ -9,17 +9,27 @@ module.exports = function sort(config) {
   const getColNumber = createGetColNumber(config.header);
 
   async function run(auth) {
-    const sheets = google.sheets({ version: 'v4', auth });
+    try {
+      const sheets = google.sheets({ version: 'v4', auth });
+      console.log('Pulling...');
+      const rows = await pullRows(sheets);
+      console.log(rows);
 
-    console.log('sort started');
-    const rows = await pullRows(sheets);
-    const header = rows.shift();
-    const newRows = await handleSort(rows);
-    await pushRows(sheets, [header, ...newRows]);
-    console.log('sort completed');
+      console.log('Sorting...');
+      const header = rows.shift();
+      const newRows = await handleSort(header, rows);
+      console.log(newRows);
+
+      console.log('Pushing...');
+      await pushRows(sheets, [header, ...newRows]);
+
+      console.log('Sorting completed');
+    } catch (error) {
+      console.log('Sorting error = ', error);
+    }
   }
 
-  function handleSort(rows) {
+  function handleSort(header, rows) {
     const newRows = [...rows];
     const { languages } = config;
 
@@ -29,7 +39,10 @@ module.exports = function sort(config) {
 
       const languageNeedTranslation = languages.find(language => {
         const key = getColNumber(language);
-        return !row[key] || row[key] === '__NOT_TRANSLATED__';
+        // const value = row[key] ? row[key].trim() : '';
+        // row.length = header.length;
+        const value = row[key];
+        return !value || value === '__NOT_TRANSLATED__';
       });
 
       return Boolean(languageNeedTranslation);
@@ -74,6 +87,7 @@ module.exports = function sort(config) {
   }
 
   async function pushRows(sheets, rows) {
+    console.log(rows);
     return new Promise((resolve, reject) => {
       sheets.spreadsheets.values.update(
         {

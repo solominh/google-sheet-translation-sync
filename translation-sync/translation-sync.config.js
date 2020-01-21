@@ -11,6 +11,6 @@ module.exports = {
   languagePathPattern: '{{language}}/translation.json',
   header: ['note', 'key', ...languages],
   spreadsSheetId: '1CAQynD25IBClg-e9T8tiKMQLIsXaqI8cDxwt3h8NpL8',
-  sheetName: 'Sheet5',
+  sheetName: 'Sheet6',
   range: 'A1:F1500'
 };
