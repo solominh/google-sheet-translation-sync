@@ -2,7 +2,7 @@ const authorize = require('./authorize');
 
 const { google } = require('googleapis');
 
-const { createGetColNumber } = require('./utils');
+const { createGetColNumber, fillUndefinedWithEmptyString } = require('./utils');
 
 module.exports = function sort(config) {
   authorize(config, run);
@@ -13,12 +13,10 @@ module.exports = function sort(config) {
       const sheets = google.sheets({ version: 'v4', auth });
       console.log('Pulling...');
       const rows = await pullRows(sheets);
-      console.log(rows);
 
       console.log('Sorting...');
       const header = rows.shift();
       const newRows = await handleSort(header, rows);
-      console.log(newRows);
 
       console.log('Pushing...');
       await pushRows(sheets, [header, ...newRows]);
@@ -30,7 +28,7 @@ module.exports = function sort(config) {
   }
 
   function handleSort(header, rows) {
-    const newRows = [...rows];
+    const newRows = fillUndefinedWithEmptyString(rows, header.length);
     const { languages } = config;
 
     function isNeedTranslation(row) {
@@ -39,9 +37,7 @@ module.exports = function sort(config) {
 
       const languageNeedTranslation = languages.find(language => {
         const key = getColNumber(language);
-        // const value = row[key] ? row[key].trim() : '';
-        // row.length = header.length;
-        const value = row[key];
+        const value = row[key] ? row[key].trim() : '';
         return !value || value === '__NOT_TRANSLATED__';
       });
 

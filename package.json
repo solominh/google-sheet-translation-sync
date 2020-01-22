@@ -1,12 +1,12 @@
 {
   "name": "google-sheet-translation-sync",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Google sheet translation sync",
   "main": "src/index.js",
   "scripts": {
-    "pull": "node ./bin/translation-sync.js pull --config translation-sync/translation-sync.config.js",
-    "push": "node ./bin/translation-sync.js push --config translation-sync/translation-sync.config.js",
-    "sort": "node ./bin/translation-sync.js sort --config translation-sync/translation-sync.config.js"
+    "i18n:pull": "node ./bin/translation-sync.js pull --config translation-sync/translation-sync.config.js",
+    "i18n:push": "node ./bin/translation-sync.js push --config translation-sync/translation-sync.config.js",
+    "i18n:sort": "node ./bin/translation-sync.js sort --config translation-sync/translation-sync.config.js"
   },
   "keywords": [],
   "author": "",

@@ -11,6 +11,17 @@ function createGetColNumber(header) {
   return getColNumber;
 }
 
+function fillUndefinedWithEmptyString(rows, numCol) {
+  rows = [...rows];
+  for (let row of rows) {
+    for (let i = 0; i < numCol; i++) {
+      if (!row[i]) row[i] = '';
+    }
+  }
+  return rows;
+}
+
 module.exports = {
-  createGetColNumber
+  createGetColNumber,
+  fillUndefinedWithEmptyString
 };
