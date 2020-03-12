@@ -99,3 +99,17 @@ pull(config);
 push(config);
 sort(config);
 ```
+
+## Apply Google Translate in Google Sheet
+
+https://support.google.com/docs/answer/3093331?hl=en
+
+```
+GOOGLETRANSLATE(text, [source_language, target_language])
+
+GOOGLETRANSLATE("Hello World","en","es")
+
+GOOGLETRANSLATE(A2,B2,C2)
+
+GOOGLETRANSLATE(A2)
+```
