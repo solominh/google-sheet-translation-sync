@@ -6,15 +6,8 @@
 
 ```bash
 yarn add -D google-sheet-translation-sync
+
 npm install --save-dev google-sheet-translation-sync
-```
-
-### Install peerDependencies if missing
-
-Note: many apps already have fs-extra and lodash installed
-
-```bash
-yarn add -D fs-extra lodash
 ```
 
 ## Create google sheet app and download app `credentials.json`
@@ -49,10 +42,11 @@ module.exports = {
 
 ```bash
 project-folder
-  translation-sync
+  example
     translation-sync.config.js
     credentials.json # Google app credentials
     token.json # Generated when run pull or push for the first time
+
   package.json
 ```
 
@@ -62,8 +56,8 @@ Add `credential.json` and `token.json` to `.gitignore`
 Example:
 
 ```bash
-/translation-sync/credentials.json
-/translation-sync/token.json
+/example/credentials.json
+/example/token.json
 ```
 
 ## CLI usage
@@ -99,7 +93,7 @@ translation-sync sort --config ./custom-path/translation-sync.config.js
 
 ```js
 const { pull, push, sort } = require('google-sheet-translation-sync');
-const config = require('./translation-sync/translation-sync.config.js');
+const config = require('./example/translation-sync.config.js');
 
 pull(config);
 push(config);
